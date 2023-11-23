@@ -12,7 +12,7 @@ class AlmacenesPAge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    almacenesVm.getCiudades();
+    almacenesVm.getAlmacenes();
     return Scaffold(
       appBar: const CustomAppBar(title: 'Almacenes', isBack: true),
       body: Column(
@@ -49,8 +49,8 @@ class AlmacenesPAge extends StatelessWidget {
                                       icon: const Icon(Icons.delete)),
                                   IconButton(
                                       onPressed: () async {
-                                        // await empleadoVM.setearCampos(element);
-                                        // Get.to(() => CrearEmpleadoPage());
+                                        await almacenesVm.setearCampos(element);
+                                        Get.to(() => CrearAlmacenPage());
                                       },
                                       icon: const Icon(Icons.edit))
                                 ],
@@ -68,8 +68,8 @@ class AlmacenesPAge extends StatelessWidget {
             padding: const EdgeInsets.all(12.0),
             child: CustomButton(
                 onPressed: () {
-                  // empleadoVM.loadData.value = true;
-                  // empleadoVM.clearFields();
+                  almacenesVm.loadData.value = true;
+                  almacenesVm.clearFields();
                   Get.to(() => CrearAlmacenPage());
                 },
                 text: 'Crear Almacen',

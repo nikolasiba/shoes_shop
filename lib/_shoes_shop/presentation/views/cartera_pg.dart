@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shoes_shop/_shoes_shop/presentation/view_model/cliente_vm.dart';
+import 'package:shoes_shop/_shoes_shop/presentation/view_model/cartera_vm.dart';
+import 'package:shoes_shop/_shoes_shop/presentation/views/create/create_cartera.dart';
 import 'package:shoes_shop/_shoes_shop/presentation/views/create/create_client.dart';
 import 'package:shoes_shop/shared/colors/colors.dart';
 import 'package:shoes_shop/shared/widgets/custom_app_bar.dart';
 import 'package:shoes_shop/shared/widgets/custom_button.dart';
 
-class ClientesPAge extends StatelessWidget {
-  ClientesPAge({super.key});
-  final clientVm = ClienteViewModel.findOrInitialize;
+class CarteraPage extends StatelessWidget {
+  CarteraPage({super.key});
+  final carteraVm = CarteraViewModel.findOrInitialize;
 
   @override
   Widget build(BuildContext context) {
-    clientVm.getClients();
+    carteraVm.getCartera();
     return Scaffold(
-      appBar: const CustomAppBar(title: 'Clientes', isBack: true),
+      appBar: const CustomAppBar(title: 'Cartera', isBack: true),
       body: Column(
         children: [
           Flexible(
@@ -35,40 +36,30 @@ class ClientesPAge extends StatelessWidget {
                           label:
                               Expanded(child: Text('Nombre(s)            '))),
                       DataColumn(label: Expanded(child: Text('Apellido(s)'))),
-                      DataColumn(label: Expanded(child: Text('Telefono'))),
-                      DataColumn(label: Expanded(child: Text('Email'))),
-                      DataColumn(label: Expanded(child: Text('Direccion'))),
-                      DataColumn(label: Expanded(child: Text('Ciudad'))),
-                      DataColumn(label: Expanded(child: Text('Departamento'))),
+                      DataColumn(label: Expanded(child: Text('Deuda'))),
                     ],
-                    rows: clientVm.clientes
+                    rows: carteraVm.carteras
                         .map((element) => DataRow(cells: <DataCell>[
                               DataCell(Row(
                                 children: [
                                   IconButton(
                                       onPressed: () async {
-                                        await clientVm
-                                            .deleteCliente(element.id!);
+                                        await carteraVm
+                                            .deleteCartera(element.id!);
                                       },
                                       icon: const Icon(Icons.delete)),
                                   IconButton(
                                       onPressed: () async {
-                                        await clientVm.setearCampos(element);
+                                        await carteraVm.setearCampos(element);
                                         Get.to(() => CrearClientePage());
                                       },
                                       icon: const Icon(Icons.edit))
                                 ],
                               )),
                               DataCell(Text(element.id.toString())),
-                              DataCell(
-                                  Text('${element.nombre} ${element.nombre2}')),
-                              DataCell(Text(
-                                  '${element.apellido} ${element.apellido2}')),
-                              DataCell(Text(element.telefono!)),
-                              DataCell(Text(element.email!)),
-                              DataCell(Text(element.direccion!)),
-                              DataCell(Text(element.ciudad!)),
-                              DataCell(Text(element.departamento!)),
+                              DataCell(Text('${element.nombre}')),
+                              DataCell(Text('${element.apellido}')),
+                              DataCell(Text(element.valor.toString())),
                             ]))
                         .toList())),
               ),
@@ -78,11 +69,11 @@ class ClientesPAge extends StatelessWidget {
             padding: const EdgeInsets.all(12.0),
             child: CustomButton(
                 onPressed: () {
-                  clientVm.loadData.value = true;
-                  clientVm.clearFields();
-                  Get.to(() => CrearClientePage());
+                  carteraVm.loadData.value = true;
+                  carteraVm.clearFields();
+                  Get.to(() => CrearCartera());
                 },
-                text: 'Crear Cliente',
+                text: 'Crear Cartera',
                 width: Get.width * 0.7,
                 backgroundColor: ConstColors.principalBlue),
           )

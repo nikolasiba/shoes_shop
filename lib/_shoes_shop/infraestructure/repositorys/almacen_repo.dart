@@ -9,9 +9,27 @@ import 'package:sqflite/sqflite.dart';
 
 class AlmacenRepository implements IAlmacenes {
   @override
-  Future<bool> createAlmacen(almacen) {
-    // TODO: implement createAlmacen
-    throw UnimplementedError();
+  Future<bool> createAlmacen(almacen) async {
+    Database? db;
+    try {
+      BaseSqliteService sqliteService = SqliteService();
+      db = await sqliteService.openDB(Const.dbName);
+
+      if (db != null) {
+        int response = await db.insert(
+          'Almacen',
+          almacen.toJson(),
+        );
+
+        return response > 0;
+        // response = Empleado.fromJson(result.first);
+      }
+    } catch (e) {
+      Get.printError(info: "Error al get almacenes ----> $e");
+      return false;
+    }
+
+    return false;
   }
 
   @override

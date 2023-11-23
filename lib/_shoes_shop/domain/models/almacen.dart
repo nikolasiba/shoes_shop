@@ -35,7 +35,6 @@ class Almacen {
         "id": id,
         "nombre": nombre,
         "direccion": direccion,
-        "ciudad": ciudad,
-        "departamento": departamento,
+        "id_ciudad": ciudad,
       };
 }

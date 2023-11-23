@@ -18,6 +18,7 @@ class AlmacenesViewModel extends GetxController {
   RxBool loadData = true.obs;
 
   TextEditingController cedulaController = TextEditingController();
+  TextEditingController nombreController = TextEditingController();
   TextEditingController direccionController = TextEditingController();
 
   Future<void> getAlmacenes() async {
@@ -54,23 +55,34 @@ class AlmacenesViewModel extends GetxController {
     }
   }
 
-  Future<void> crearEmpleado() async {
+  Future<void> crearAlmacen() async {
     Almacen almacen = Almacen(
-        direccion: direccionController.text,
-        ciudad: selectCiudadController.value);
+        nombre: nombreController.text,
+        direccion: nombreController.text,
+        ciudad: '${selectCiudad.value}');
 
     bool response = await almacenService.createAlmacen(almacen);
     if (response) {
-      CustomAlert(title: 'Succes', body: 'Almacen creado correctamente');
+      CustomAlert(
+          title: 'Succes',
+          body: 'Almacen creado correctamente',
+          onPressed: () async {
+            clearFields();
+            Get.close(2);
+            await getAlmacenes();
+          });
     } else {
       CustomAlert(title: 'Error', body: 'Error al crear almacen');
     }
   }
 
-  Future<void> actualizarEmpleado() async {
+  Future<void> actualizarAlmacen() async {
     Almacen almacen = Almacen(
-        direccion: direccionController.text,
-        ciudad: selectCiudadController.value);
+      id: int.parse(cedulaController.text),
+      nombre: nombreController.text,
+      direccion: direccionController.text,
+      ciudad: '${selectCiudad.value}',
+    );
 
     bool response = await almacenService.updateAlmacen(almacen);
     if (response) {
@@ -78,5 +90,25 @@ class AlmacenesViewModel extends GetxController {
     } else {
       CustomAlert(title: 'Error', body: 'Error al actualizar almacen');
     }
+  }
+
+  void clearFields() {
+    cedulaController.text = '';
+    nombreController.text = '';
+    direccionController.text = '';
+    selectCiudadController.value = '';
+  }
+
+  Future<void> setearCampos(Almacen element) async {
+    loadData.value = false;
+    await getCiudades();
+    cedulaController.text = element.id.toString();
+    nombreController.text = element.nombre!;
+    direccionController.text = element.direccion!;
+    selectCiudadController.value = element.ciudad!;
+    selectCiudad.value = ciudades
+        .firstWhere(
+            (element) => element.descripcion == selectCiudadController.value)
+        .id!;
   }
 }
