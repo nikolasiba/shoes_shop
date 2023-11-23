@@ -4,68 +4,62 @@
 
 import 'dart:convert';
 
-Empleado empleadoFromJson(String str) => Empleado.fromJson(json.decode(str));
+Login empleadoFromJson(String str) => Login.fromJson(json.decode(str));
 
-String empleadoToJson(Empleado data) => json.encode(data.toJson());
+String empleadoToJson(Login data) => json.encode(data.toJson());
 
-class Empleado {
+class Login {
   int? id;
+  int? idAlmacen;
   String? nombre;
   String? sNombre;
   String? apellido;
   String? sApellido;
   String? telefono;
   String? email;
-  String? cargo;
   String? direccion;
-  String? ciudad;
-  String? departamento;
-  int? idAlmacen;
+  int? idCuenta;
+  int? idCargo;
 
-  Empleado({
+  Login({
     this.id,
+    this.idAlmacen,
     this.nombre,
     this.sNombre,
     this.apellido,
     this.sApellido,
     this.telefono,
     this.email,
-    this.cargo,
     this.direccion,
-    this.ciudad,
-    this.departamento,
-    this.idAlmacen,
+    this.idCuenta,
+    this.idCargo,
   });
 
-  factory Empleado.fromJson(Map<String, dynamic> json) => Empleado(
+  factory Login.fromJson(Map<String, dynamic> json) => Login(
         id: json["id"],
+        idAlmacen: json["id_almacen"],
         nombre: json["nombre"],
         sNombre: json["s_nombre"],
         apellido: json["apellido"],
         sApellido: json["s_apellido"],
         telefono: json["telefono"],
         email: json["email"],
-        cargo: json["cargo"],
         direccion: json["direccion"],
-        ciudad: json["ciudad"],
-        departamento: json["departamento"],
-        idAlmacen: json["id_almacen"],
+        idCuenta: json["id_cuenta"],
+        idCargo: json["id_cargo"],
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
+        "id_almacen": idAlmacen,
         "nombre": nombre,
         "s_nombre": sNombre,
         "apellido": apellido,
         "s_apellido": sApellido,
         "telefono": telefono,
         "email": email,
-        "id_cargo": int.parse(cargo!),
-        "direccion": direccion!,
-        "id_ciudad": int.parse(ciudad!),
-        "id_cuenta": id,
-        "id_almacen": idAlmacen,
-
-        // "id_departamento": int.parse(departamento!),
+        "direccion": direccion,
+        "id_cuenta": idCuenta,
+        "id_cargo": idCargo,
       };
 }

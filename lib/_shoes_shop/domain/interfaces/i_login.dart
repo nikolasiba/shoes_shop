@@ -1,9 +1,9 @@
-import 'package:shoes_shop/_shoes_shop/domain/models/empleado.dart';
+import 'package:shoes_shop/_shoes_shop/domain/models/login.dart';
 
 ///
 ///
 ///
 ///
 abstract class ILogin {
-  Future<Empleado> login({required String user, required String password});
+  Future<Login> login({required String user, required String password});
 }

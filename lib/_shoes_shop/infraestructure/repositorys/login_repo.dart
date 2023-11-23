@@ -3,7 +3,7 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:shoes_shop/_shoes_shop/domain/interfaces/i_login.dart';
-import 'package:shoes_shop/_shoes_shop/domain/models/empleado.dart';
+import 'package:shoes_shop/_shoes_shop/domain/models/login.dart';
 import 'package:shoes_shop/_shoes_shop/infraestructure/data/local/sqlite/base_sqlite_service.dart';
 import 'package:shoes_shop/_shoes_shop/infraestructure/data/local/sqlite/sqlite_service.dart';
 import 'package:shoes_shop/shared/util/const.dart';
@@ -11,10 +11,10 @@ import 'package:sqflite/sqflite.dart';
 
 class LoginRepository implements ILogin {
   @override
-  Future<Empleado> login(
+  Future<Login> login(
       {required String user, required String password}) async {
     Database? db;
-    Empleado response = Empleado();
+    Login response = Login();
     try {
       BaseSqliteService sqliteService = SqliteService();
       db = await sqliteService.openDB(Const.dbName);
@@ -29,7 +29,7 @@ class LoginRepository implements ILogin {
             whereArgs: [user, password]);
 
         log(jsonEncode(result.first));
-        response = Empleado.fromJson(result.first);
+        response = Login.fromJson(result.first);
       }
     } catch (e) {
       Get.printError(info: "Error al loguearse ----> $e");

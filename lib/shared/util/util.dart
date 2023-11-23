@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 // import 'package:shoes_shop/shared/util/const.dart';
 import 'package:package_info/package_info.dart';
-import 'package:shoes_shop/_shoes_shop/domain/models/empleado.dart';
+import 'package:shoes_shop/_shoes_shop/domain/models/login.dart';
 import 'package:shoes_shop/shared/util/preferences.dart';
 import 'package:sqflite/sqflite.dart';
 // import 'package:url_launcher/url_launcher.dart';
@@ -24,8 +24,8 @@ class Util {
 class _Data {
   _Data._();
 
-  Empleado getUser() {
-    Empleado empleado = Empleado.fromJson(jsonDecode(prefs.user));
+  Login getUser() {
+    Login empleado = Login.fromJson(jsonDecode(prefs.user));
 
     return empleado;
   }

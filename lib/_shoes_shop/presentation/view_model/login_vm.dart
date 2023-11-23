@@ -3,7 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shoes_shop/_shoes_shop/domain/models/empleado.dart';
+import 'package:shoes_shop/_shoes_shop/domain/models/login.dart';
 import 'package:shoes_shop/_shoes_shop/domain/services/login_service.dart';
 import 'package:shoes_shop/_shoes_shop/infraestructure/repositorys/login_repo.dart';
 import 'package:shoes_shop/_shoes_shop/presentation/views/home_pg.dart';
@@ -20,7 +20,7 @@ class LoginViewModel extends GetxController {
 
   Future<void> login() async {
     try {
-      Empleado empleado = Empleado();
+      Login empleado = Login();
       empleado = await loginService.login(
           user: userController.text, password: passwordController.text);
 
