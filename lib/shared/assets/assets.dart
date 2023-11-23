@@ -20,6 +20,10 @@ class ResImages {
   final antecedentes = 'res/images/antecedentes.png';
   final oferts = 'res/images/oferts.png';
   final contrato = 'res/images/contrato.png';
+  final empleado = 'res/images/empleado.png';
+  final invoice = 'res/images/factura.png';
+  final product = 'res/images/productos.png';
+  final almacen = 'res/images/almacen.png';
 }
 
 class _ResIcons {

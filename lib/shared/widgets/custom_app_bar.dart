@@ -5,11 +5,13 @@ import 'package:shoes_shop/shared/colors/colors.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final bool isBack;
+  final String? name;
   final void Function()? onPressed;
   const CustomAppBar({
     Key? key,
     required this.title,
     required this.isBack,
+    this.name,
     this.onPressed,
   }) : super(key: key);
 
@@ -22,7 +24,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: ConstColors.principalBlue,
       elevation: 0,
       automaticallyImplyLeading: false,
-      title: Container(),
+      title: name == null ? Container() : Text('Bienvenido: ${name!}'),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
           bottom: Radius.circular(30),

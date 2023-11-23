@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shoes_shop/_shoes_shop/presentation/login/view/login_pg.dart';
+import 'package:shoes_shop/_shoes_shop/presentation/views/login_pg.dart';
 import 'package:get_storage/get_storage.dart';
 import 'shared/util/preferences.dart';
 
