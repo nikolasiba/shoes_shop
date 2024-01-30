@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shoes_shop/_shoes_shop/presentation/view_model/cartera_vm.dart';
 import 'package:shoes_shop/_shoes_shop/presentation/views/create/create_cartera.dart';
-import 'package:shoes_shop/_shoes_shop/presentation/views/create/create_client.dart';
 import 'package:shoes_shop/shared/colors/colors.dart';
 import 'package:shoes_shop/shared/widgets/custom_app_bar.dart';
 import 'package:shoes_shop/shared/widgets/custom_button.dart';
@@ -51,7 +50,7 @@ class CarteraPage extends StatelessWidget {
                                   IconButton(
                                       onPressed: () async {
                                         await carteraVm.setearCampos(element);
-                                        Get.to(() => CrearClientePage());
+                                        Get.to(() => CrearCartera());
                                       },
                                       icon: const Icon(Icons.edit))
                                 ],

@@ -79,7 +79,7 @@ class ClientesPAge extends StatelessWidget {
             child: CustomButton(
                 onPressed: () {
                   clientVm.loadData.value = true;
-                  clientVm.clearFields();
+                  // clientVm.clearFields();
                   Get.to(() => CrearClientePage());
                 },
                 text: 'Crear Cliente',

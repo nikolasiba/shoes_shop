@@ -9,7 +9,7 @@ Cartera carteraFromJson(String str) => Cartera.fromJson(json.decode(str));
 String carteraToJson(Cartera data) => json.encode(data.toJson());
 
 class Cartera {
-  int? valor;
+  double? valor;
   String? nombre;
   String? apellido;
   int? id;
@@ -22,7 +22,7 @@ class Cartera {
   });
 
   factory Cartera.fromJson(Map<String, dynamic> json) => Cartera(
-        valor: json["valor"],
+        valor: json["valor"] == null ? 0.0 : json["valor"].toDouble(),
         nombre: json["nombre"],
         apellido: json["apellido"],
         id: json["id"],
@@ -30,8 +30,7 @@ class Cartera {
 
   Map<String, dynamic> toJson() => {
         "valor": valor,
-        "nombre": nombre,
-        "apellido": apellido,
         "id": id,
+        "id_cliente": id,
       };
 }

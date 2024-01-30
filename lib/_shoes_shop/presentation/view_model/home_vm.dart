@@ -4,6 +4,7 @@ import 'package:shoes_shop/_shoes_shop/presentation/views/almacenes_pg.dart';
 import 'package:shoes_shop/_shoes_shop/presentation/views/cartera_pg.dart';
 import 'package:shoes_shop/_shoes_shop/presentation/views/clientes_pg.dart';
 import 'package:shoes_shop/_shoes_shop/presentation/views/empleados_pg.dart';
+import 'package:shoes_shop/_shoes_shop/presentation/views/reportes.dart';
 import 'package:shoes_shop/shared/assets/assets.dart';
 
 class HomeViewModel extends GetxController {
@@ -37,6 +38,9 @@ class HomeViewModel extends GetxController {
       }),
       OptionsModel('Cartera', Res.images.references, () {
         Get.to(() => CarteraPage());
+      }),
+      OptionsModel('Reportes', Res.images.contrato, () {
+        Get.to(() => ReportesPage());
       }),
     ];
   }

@@ -1,5 +1,6 @@
 import 'package:shoes_shop/_shoes_shop/domain/interfaces/i_cartera.dart';
 import 'package:shoes_shop/_shoes_shop/domain/models/cartera.dart';
+import 'package:shoes_shop/_shoes_shop/domain/models/general_models.dart';
 
 class CarteraService {
   final ICartera iCarteraService;
@@ -20,5 +21,9 @@ class CarteraService {
 
   Future<List<Cartera>> getCartera() async {
     return await iCarteraService.getCartera();
+  }
+
+  Future<List<GeneralModel>> getClientes() async {
+    return await iCarteraService.getClientes();
   }
 }
